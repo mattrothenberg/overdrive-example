@@ -1,18 +1,33 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="grid">
+    <overdrive :id="post" v-for="post in posts" :key="post">
+      <router-link :to="`detail/${post}`">
+        <div class="post"></div>
+      </router-link>
+    </overdrive>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
   name: "home",
-  components: {
-    HelloWorld
+  data() {
+    return {
+      posts: ["foo", "bar", "baz"]
+    };
   }
 };
 </script>
+
+<style scoped>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 16px;
+}
+.post {
+  height: 300px;
+  background: #ccc;
+  z-index: 0;
+}
+</style>
